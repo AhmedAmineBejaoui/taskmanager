@@ -7,6 +7,7 @@ app.use(cors());
 app.use(express.json());
 
 let tasks = []; // Simple array to store tasks in-memory
+let nextTaskId = 1;
 
 // GET /tasks - Retrieve all tasks
 app.get('/tasks', (req, res) => {
@@ -17,7 +18,7 @@ app.get('/tasks', (req, res) => {
 app.post('/tasks', (req, res) => {
     const { title, description, status } = req.body;
     const newTask = {
-        id: tasks.length + 1,
+        id: nextTaskId++,
         title,
         description,
         status
